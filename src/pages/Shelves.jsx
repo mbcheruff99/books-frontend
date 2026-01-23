@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
-import ShelfCard from "./ShelfCard";
+import ShelfCard from "../components/ShelfCard";
+
 
 export default function Shelves() {
   const [shelves, setShelves] = useState([]);

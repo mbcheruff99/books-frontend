@@ -1,4 +1,4 @@
-import BookCard from "./BookCard";
+import BookCard from "../components/BookCard";
 import { useNavigate } from "react-router-dom";
 
 
@@ -29,3 +29,4 @@ export default function ShelfCard({ shelf, userShelves }) {
     </div>
   );
 }
+
