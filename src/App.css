@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+.icon-wrapper {
+  min-height: 60px; /* reserve same height for all icons */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
