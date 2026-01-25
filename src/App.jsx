@@ -16,7 +16,7 @@ export default function App() {
 
   return (
     <Router>
-      <Navbar user={user} set={setUser} />
+      <Navbar user={user} setUser={setUser} />
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<Home />} />
