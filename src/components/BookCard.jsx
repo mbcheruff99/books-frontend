@@ -5,6 +5,14 @@ export default function BookCard({ book, userShelves, onAdded }) {
   const [selectedShelf, setSelectedShelf] = useState(userShelves[0]?.id || "");
   const [loading, setLoading] = useState(false);
 
+  function formatShelfName(name) {
+    return name
+    .split("_") // split snake_case
+    .map(word => word[0].toUpperCase() + word.slice(1)) // capitalize each word
+    .join(" "); // join with spaces
+  }
+
+
   async function addToShelf() {
     if (!selectedShelf) return alert("Please select a shelf first!");
     setLoading(true);
@@ -36,7 +44,7 @@ export default function BookCard({ book, userShelves, onAdded }) {
         >
           {userShelves.map(shelf => (
             <option key={shelf.id} value={shelf.id}>
-              {shelf.name}
+              {formatShelfName(shelf.name)}
             </option>
           ))}
         </select>

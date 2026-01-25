@@ -5,10 +5,18 @@ import { useNavigate } from "react-router-dom";
 export default function ShelfCard({ shelf, userShelves }) {
   const navigate = useNavigate();
 
+  function formatShelfName(name) {
+    return name
+    .split("_") // split snake_case
+    .map(word => word[0].toUpperCase() + word.slice(1)) // capitalize each word
+    .join(" "); // join with spaces
+  }
+
+
   return (
     <div className="card h-100">
       <div className="card-header">
-        <h5>{shelf.name}</h5>
+        <h5>{formatShelfName(shelf.name)}</h5>
       </div>
       <div className="card-body">
         {shelf.books && shelf.books.length > 0 ? (
