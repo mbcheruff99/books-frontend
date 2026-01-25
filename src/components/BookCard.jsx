@@ -2,17 +2,17 @@ import { useState } from "react";
 import api from "../api/api";
 
 export default function BookCard({ book, userShelves, onAdded }) {
-  const [selectedShelf, setSelectedShelf] = useState(userShelves[0]?.id || null);
+  const [selectedShelf, setSelectedShelf] = useState(userShelves[0]?.id || "");
   const [loading, setLoading] = useState(false);
 
   async function addToShelf() {
-
     if (!selectedShelf) return alert("Please select a shelf first!");
     setLoading(true);
     try {
       await api.post("/shelvings", { shelf_id: selectedShelf, book_id: book.id });
-      alert(`Added "${book.title}" to ${selectedShelf.name}!`);
-      if (onAdded) onAdded(); // optional callback to refresh parent
+      const shelf = userShelves.find(s => s.id === selectedShelf);
+      alert(`Added "${book.title}" to ${shelf?.name}!`);
+    if (onAdded) onAdded();
     } catch (err) {
       console.error(err);
       alert("Failed to add book to shelf");
