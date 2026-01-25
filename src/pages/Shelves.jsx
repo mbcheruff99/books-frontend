@@ -43,6 +43,7 @@ export default function Shelves() {
 
   // Delete a shelf
   async function deleteShelf(shelfId, shelfName) {
+    // console.log("Deleting shelf:", shelfId, shelfName);
     const defaultShelves = ["Want to Read", "Currently Reading", "Read"];
     if (defaultShelves.includes(shelfName)) {
       alert("Default shelves cannot be deleted");
@@ -86,8 +87,8 @@ export default function Shelves() {
           <div className="col" key={shelf.id}>
             <ShelfCard
               shelf={shelf}
-              userShelves={shelves} // pass all shelves for BookCard dropdowns
-              onDelete={() => deleteShelf(shelf.id, shelf.name)}
+              userShelves={shelves}
+              onDelete={deleteShelf}
             />
           </div>
         ))}
