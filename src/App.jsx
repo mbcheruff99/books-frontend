@@ -22,10 +22,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/books" element={<Books user={user} />} />
-          <Route path="/shelves" element={<Shelves />} />
+          <Route path="/shelves" element={<Shelves user={user}/>} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
-          <Route path="/books/:id" element={<BookDetail />} />
+          <Route path="/books/:id" element={<BookDetail user={user}/>} />
         </Routes>
       </div>
     </Router>
