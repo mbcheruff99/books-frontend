@@ -17,12 +17,20 @@ export default function BookCard({ book, userShelves, onAdded }) {
 
 
   async function addToShelf() {
+  
     if (!selectedShelf) return alert("Please select a shelf first!");
+
+    const shelf = userShelves.find(s => s.id === selectedShelf);
+    if (shelf.books.some(b => b.id === book.id)) {
+      alert(`"${book.title}" is already on this shelf.`);
+      return;
+    }
+
     setLoading(true);
     try {
       await api.post("/shelvings", { shelf_id: selectedShelf, book_id: book.id });
       const shelf = userShelves.find(s => s.id === selectedShelf);
-      alert(`Added "${book.title}" to ${shelf?.name}!`);
+      alert(`Added "${book.title}" to ${formatShelfName(shelf?.name)}!`);
     if (onAdded) onAdded();
     } catch (err) {
       console.error(err);
