@@ -6,6 +6,7 @@ import Shelves from "./pages/Shelves";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
+import BookDetail from "./pages/BookDetail";
 
 export default function App() {
 
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/shelves" element={<Shelves />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/books/:id" element={<BookDetail />} />
         </Routes>
       </div>
     </Router>

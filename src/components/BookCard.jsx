@@ -1,15 +1,17 @@
 import { useState } from "react";
 import api from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 export default function BookCard({ book, userShelves, onAdded }) {
   const [selectedShelf, setSelectedShelf] = useState(userShelves[0]?.id || "");
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   function formatShelfName(name) {
     return name
     .split("_") // split snake_case
     .map(word => word[0].toUpperCase() + word.slice(1)) // capitalize each word
-    .join(" "); // join with spaces
+    .join(" ")
   }
 
 
@@ -31,12 +33,19 @@ export default function BookCard({ book, userShelves, onAdded }) {
 
   return (
     <div className="card h-100">
-      <img src={book.cover} className="card-img-top" alt={book.title} />
-      <div className="card-body">
-        <h5 className="card-title">{book.title}</h5>
-        <p className="card-text">{book.author}</p>
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate(`/books/${book.id}`)}
+      >
+        <img src={book.cover} className="card-img-top" alt={book.title} />
+        <div className="card-body">
+          <h5 className="card-title">{book.title}</h5>
+          <p className="card-text">{book.author}</p>
+        </div>
+      </div>
 
-        {/* Shelf selection dropdown */}
+      {/* Shelf selection and Add button stay outside clickable div */}
+      <div className="card-body">
         <select
           className="form-select mb-2"
           value={selectedShelf || ""}
