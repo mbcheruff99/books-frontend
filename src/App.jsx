@@ -21,10 +21,10 @@ export default function App() {
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/books" element={<Books />} />
+          <Route path="/books" element={<Books user={user} />} />
           <Route path="/shelves" element={<Shelves />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup setUser={setUser} />} />
           <Route path="/books/:id" element={<BookDetail />} />
         </Routes>
       </div>

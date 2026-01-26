@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { SiBookalope } from "react-icons/si";
 
+
 export default function Navbar({ user, setUser }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   
   async function handleLogout() {
     try {
@@ -18,23 +20,35 @@ export default function Navbar({ user, setUser }) {
     navigate("/login");
   }
 
+  function handleSearch(e) {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/books?q=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
+      setOpen(false);
+    }
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container d-flex align-items-baseline">
-       <Link to="/" className="navbar-brand fs-2 lh-1">
+        <Link to="/" className="navbar-brand fs-2 lh-1">
           <span className="d-inline-flex align-items-center">
             <SiBookalope className="fs-2 text-white align-text-bottom" />
             <span>ookShelf</span>
           </span>
         </Link>
 
-
-        <button className="navbar-toggler" type="button" onClick={() => setOpen(!open)}>
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setOpen(!open)}
+        >
           <span className="navbar-toggler-icon" />
         </button>
 
         <div className={`collapse navbar-collapse ${open ? "show" : ""}`}>
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto me-3">
             <li className="nav-item">
               <Link className="nav-link" to="/books">
                 Browse Books
@@ -78,6 +92,20 @@ export default function Navbar({ user, setUser }) {
               </>
             )}
           </ul>
+
+          {/* Search form */}
+          <form className="d-flex" onSubmit={handleSearch}>
+            <input
+              type="text"
+              className="form-control me-2"
+              placeholder="Search books..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button className="btn btn-light" type="submit">
+              Search
+            </button>
+          </form>
         </div>
       </div>
     </nav>

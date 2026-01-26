@@ -2,7 +2,7 @@ import { useState } from "react";
 import api from "../api/api";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Signup({ setUser }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,18 @@ export default function Login() {
     e.preventDefault();
     try {
       await api.post("/users", { name, email, password, password_confirmation: passwordConfirmation });
-      navigate("/"); // redirect after signup
+      
+      // Log the user in after successful signup
+      const res = await api.post("/sessions", { email, password });
+      
+      const userData = {
+        id: res.data.user_id,
+        email: res.data.email,
+      };
+
+      localStorage.setItem("user", JSON.stringify(userData));
+      setUser(userData);
+      navigate("/");
     } catch (err) {
       console.log(err);
       alert("Signup failed" + (err.response?.data?.message || err.message));
