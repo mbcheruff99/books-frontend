@@ -48,7 +48,9 @@ export default function BookDetail() {
     <div className="container mt-4">
       <div className="row">
         <div className="col-md-4">
-          <img src={book.cover} alt={book.title} className="img-fluid" />
+          <img src={book.cover} alt={book.title} className="img-fluid" 
+            style={{ width: "300", height: "450px", objectFit: "cover" }}
+          />
         </div>
         <div className="col-md-8">
           <h2>{book.title}</h2>

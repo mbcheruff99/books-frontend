@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../api/api";
 import { useNavigate } from "react-router-dom";
+import "./BookCard.css";
 
 export default function BookCard({ book, userShelves, onAdded }) {
   const [selectedShelf, setSelectedShelf] = useState(userShelves[0]?.id || "");
@@ -32,19 +33,20 @@ export default function BookCard({ book, userShelves, onAdded }) {
   }
 
   return (
-    <div className="card h-100">
+    <div className="card book-card">
       <div
         style={{ cursor: "pointer" }}
         onClick={() => navigate(`/books/${book.id}`)}
       >
-        <img src={book.cover} className="card-img-top" alt={book.title} />
-        <div className="card-body">
+        <div className="book-card-img">
+          <img src={book.cover} alt={book.title} />
+        </div>
+        <div className="card-body book-card-body">
           <h5 className="card-title">{book.title}</h5>
           <p className="card-text">{book.author}</p>
         </div>
       </div>
 
-      {/* Shelf selection and Add button stay outside clickable div */}
       <div className="card-body">
         <select
           className="form-select mb-2"
