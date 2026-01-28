@@ -12,3 +12,7 @@ const api = axios.create({
 });
 
 export default api;
+
+axios.defaults.baseURL = process.env.NODE_ENV === "development" 
+  ? "http://localhost:3000" 
+  : "https://mini-capstone-api-abc123.onrender.chttps://bookshelf-q8nj.onrender.comom";  
