@@ -19,13 +19,12 @@ export default function BookCard({ book, userShelves, user, onAdded }) {
 
   function formatShelfName(name) {
     return name
-      .split("_") // split snake_case
-      .map(word => word[0].toUpperCase() + word.slice(1)) // capitalize each word
+      .split("_") 
+      .map(word => word[0].toUpperCase() + word.slice(1)) 
       .join(" ");
   }
 
   async function addToShelf() {
-    // If user is not logged in, redirect to login
     if (!user) {
       navigate("/login");
       return;

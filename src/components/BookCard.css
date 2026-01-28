@@ -1,14 +1,14 @@
 .book-card {
-  width: 260px;
-  height: auto;
-  min-height: 480px;
+  width: 100%;
+  max-width: 260px;
+  height: 480px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 80px;
-  padding: 0;
+  margin: 0 auto;
   overflow: hidden;
 }
+
 
 .book-card-img {
   width: 100%;           

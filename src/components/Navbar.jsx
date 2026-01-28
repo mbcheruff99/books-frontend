@@ -30,6 +30,7 @@ export default function Navbar({ user, setUser }) {
   }
 
   return (
+    // Navbar for users who are logged in
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container d-flex align-items-baseline">
         <Link to="/" className="navbar-brand fs-2 lh-1">
@@ -78,6 +79,7 @@ export default function Navbar({ user, setUser }) {
               </>
             ) : (
               <>
+              {/*  Navbar for users who are not logged in: */}
                 <li className="nav-item">
                   <Link className="nav-link" to="/login">
                     Login
@@ -93,7 +95,7 @@ export default function Navbar({ user, setUser }) {
             )}
           </ul>
 
-          {/* Search form */}
+          {/* Search bar */}
           <form className="d-flex" onSubmit={handleSearch}>
             <input
               type="text"

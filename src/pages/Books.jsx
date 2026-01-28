@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import api from "../api/api";
 import BookCard from "../components/BookCard";
+import "./Books.css";
 
 export default function Books({ user }) {
   const [books, setBooks] = useState([]);
@@ -60,7 +61,7 @@ export default function Books({ user }) {
       {books.length === 0 ? (
         <p>No books found.</p>
       ) : (
-        <div className="row row-cols-1 row-cols-md-3 g-4">
+        <div className="books-grid">
           {books.map((book) => (
             <div className="col" key={book.id}>
               <BookCard book={book} userShelves={userShelves} user={user} />
